@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DevOps Agent Run Results",
+  "type": "object",
+  "properties": {
+    "run_summary": {
+      "type": "object",
+      "properties": {
+        "repository_url": { "type": "string", "format": "uri" },
+        "team_name": { "type": "string" },
+        "leader_name": { "type": "string" },
+        "branch_created": { "type": "string" },
+        "final_status": { "type": "string", "enum": ["PASSED", "FAILED"] },
+        "total_time_seconds": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["repository_url", "team_name", "leader_name", "branch_created", "final_status", "total_time_seconds"]
+    },
+    "score_breakdown": {
+      "type": "object",
+      "properties": {
+        "base_score": { "type": "integer", "const": 100 },
+        "speed_bonus": { "type": "integer" },
+        "efficiency_penalty": { "type": "integer" },
+        "final_total_score": { "type": "integer" }
+      },
+      "required": ["base_score", "speed_bonus", "efficiency_penalty", "final_total_score"]
+    },
+    "fixes_applied": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": { "type": "string" },
+          "bug_type": { "type": "string" },
+          "line_number": { "type": "integer" },
+          "commit_message": { "type": "string" },
+          "status": { "type": "string" }
+        },
+        "required": ["file", "bug_type", "line_number", "commit_message", "status"]
+      }
+    },
+    "ci_cd_timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "iteration": { "type": "string" },
+          "status": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["iteration", "status", "timestamp"]
+      }
+    }
+  },
+  "required": ["run_summary", "score_breakdown", "fixes_applied", "ci_cd_timeline"]
+}

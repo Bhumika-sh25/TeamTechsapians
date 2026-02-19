@@ -1,0 +1,31 @@
+
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: devops-agent-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Essential for DinD / Sibling containers
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - RETRY_LIMIT=5
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    container_name: devops-agent-dashboard
+    ports:
+      - "3000:80" # Map host 3000 to container 80 (nginx default)
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

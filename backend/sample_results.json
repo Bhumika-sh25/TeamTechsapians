@@ -1,0 +1,37 @@
+{
+    "run_summary": {
+        "repository_url": "https://github.com/user/repo",
+        "team_name": "RIFT_ORGANISERS",
+        "leader_name": "Saiyam Kumar",
+        "branch_created": "RIFT_ORGANISERS_SAIYAM_KUMAR_AI_Fix",
+        "final_status": "PASSED",
+        "total_time_seconds": 245
+    },
+    "score_breakdown": {
+        "base_score": 100,
+        "speed_bonus": 10,
+        "efficiency_penalty": 0,
+        "final_total_score": 110
+    },
+    "fixes_applied": [
+        {
+            "file": "src/utils.py",
+            "bug_type": "LINTING",
+            "line_number": 15,
+            "commit_message": "[AI-AGENT] remove the unused import 'os'",
+            "status": "Fixed"
+        }
+    ],
+    "ci_cd_timeline": [
+        {
+            "iteration": "1/5",
+            "status": "FAILED",
+            "timestamp": "2026-02-20T01:00:00Z"
+        },
+        {
+            "iteration": "2/5",
+            "status": "PASSED",
+            "timestamp": "2026-02-20T01:04:05Z"
+        }
+    ]
+}
