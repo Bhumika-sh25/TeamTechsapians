@@ -8,7 +8,7 @@ import { Activity } from 'lucide-react';
 
 function App() {
   useEffect(() => {
-    fetch("http://localhost:5000/api/test")
+    fetch("https://teamtechsapians.onrender.com")
       .then(res => res.json())
       .then(data => {
         console.log("Backend Response:", data);
