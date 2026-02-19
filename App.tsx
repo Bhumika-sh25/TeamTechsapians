@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { InputSection } from './components/InputSection';
 import { RunSummary } from './components/RunSummary';
 import { ScorePanel } from './components/ScorePanel';
@@ -7,6 +7,17 @@ import { FixesTable } from './components/FixesTable';
 import { Activity } from 'lucide-react';
 
 function App() {
+  useEffect(() => {
+    fetch("http://localhost:5000/api/test")
+      .then(res => res.json())
+      .then(data => {
+        console.log("Backend Response:", data);
+      })
+      .catch(err => {
+        console.error("Error connecting to backend:", err);
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground p-8 font-sans">
       <header className="mb-8 flex items-center justify-between border-b border-border pb-4">
@@ -15,11 +26,17 @@ function App() {
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-2 gradient-text">
               CI/CD Healing Agent
             </h1>
-            <p className="text-sm text-muted-foreground">AI-powered continuous integration & repair</p>
+            <p className="text-sm text-muted-foreground">
+              AI-powered continuous integration & repair
+            </p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-xs font-mono text-muted-foreground block">SYSTEM_STATUS: ONLINE</span>
-            <span className="text-xs font-mono text-green-400 block">v1.2.4-stable</span>
+            <span className="text-xs font-mono text-muted-foreground block">
+              SYSTEM_STATUS: ONLINE
+            </span>
+            <span className="text-xs font-mono text-green-400 block">
+              v1.2.4-stable
+            </span>
           </div>
         </div>
       </header>
@@ -31,7 +48,6 @@ function App() {
           <FixesTable />
           <ScorePanel />
         </div>
-
         <div className="lg:col-span-1">
           <Timeline />
         </div>
